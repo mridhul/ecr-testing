@@ -1,0 +1,35 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: docker:17.03.2-ce-git
+    working_directory: ~/microservice-movies
+    parallelism: 1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1 \
+              bash \
+              jq \
+              curl \
+              nodejs
+            pip install \
+              docker-compose==1.12.0 \
+              awscli==1.11.76
+      - run:
+          name: Build Docker images
+          command: |
+            SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
+            TAG=$SHORT_GIT_HASH
+            docker build -t $SHORT_GIT_HASH .
+            docker tag $SHORT_GIT_HASH:latest $REPO/$TAG
+            docker tag $SHORT_GIT_HASH:latest $REPO/$TAG:latest
+            docker push $REPO/$TAG
+            docker push $REPO/$TAG:latest
