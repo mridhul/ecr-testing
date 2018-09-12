@@ -43,5 +43,7 @@ jobs:
           command: |
             pip install ecs-deploy
             pwd;ls -al
+            aws configure set default.region us-east-2
+            #aws configure set default.output json
             sed -e "s;%IMAGE_TAG%;1;g" ecs-tasks.json > my_website-1.json
             aws ecs register-task-definition --family ECS-Tasks --cli-input-json file://my_website-1.json
