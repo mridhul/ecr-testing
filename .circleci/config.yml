@@ -26,14 +26,14 @@ jobs:
       - run:
           name: Build Docker images
           command: |
-            IMAGE_TAG=$CIRCLE_JOB:$CIRCLE_SHA1
+            IMAGE_TAG=$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             IMAGE_NAME="$ECR_REPO/$IMAGE_TAG"
-            #SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
-            #TAG=$SHORT_GIT_HASH
+            SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
+            TAG=$SHORT_GIT_HASH
             REPO=$ECR_REPO
-            docker build -t $CIRCLE_JOB .
-            docker tag $CIRCLE_JOB:latest $REPO/$IMAGE_TAG
-            docker tag $CIRCLE_JOB:latest $REPO/$CIRCLE_JOB:latest
+            docker build -t $CIRCLE_PROJECT_REPONAME .
+            docker tag $CIRCLE_PROJECT_REPONAME:latest $REPO/$IMAGE_TAG
+            docker tag $CIRCLE_PROJECT_REPONAME:latest $REPO/$CIRCLE_PROJECT_REPONAME:latest
             $(aws ecr get-login --region us-east-2)
             docker push $REPO/$IMAGE_TAG
-            docker push $REPO/$CIRCLE_JOB:latest
+            docker push $REPO/$CIRCLE_PROJECT_REPONAME:latest
