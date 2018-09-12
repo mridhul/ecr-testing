@@ -42,4 +42,5 @@ jobs:
           name: Deploy to ECS
           command: |
             pip install ecs-deploy
-            ecs deploy --region ${AWS_REGION} ${CLUSTER_NAME} $CIRCLE_PROJECT_REPONAME --tag $CIRCLE_SHA1
+            sed -e "s;%IMAGE_TAG%;1;g" ecs-task.json > my_website-1.json
+            aws ecs register-task-definition --family ECS-Tasks --cli-input-json file://my_website-1.json
