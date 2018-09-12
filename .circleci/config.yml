@@ -34,6 +34,6 @@ jobs:
             docker build -t $CIRCLE_JOB .
             docker tag $CIRCLE_JOB:latest $REPO/$IMAGE_TAG
             docker tag $CIRCLE_JOB:latest $REPO/$CIRCLE_JOB:latest
-            $(aws ecr get-login --no-include-email --region us-east-2)
+            $(aws ecr get-login --region us-east-2)
             docker push $REPO/$IMAGE_TAG
             docker push $REPO/$CIRCLE_JOB}:latest
