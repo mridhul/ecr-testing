@@ -26,10 +26,13 @@ jobs:
       - run:
           name: Build Docker images
           command: |
-            SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
-            TAG=$SHORT_GIT_HASH
-            docker build -t $SHORT_GIT_HASH .
-            docker tag $SHORT_GIT_HASH:latest $REPO/$TAG
-            docker tag $SHORT_GIT_HASH:latest $REPO/$TAG:latest
-            docker push $REPO/$TAG
-            docker push $REPO/$TAG:latest
+            IMAGE_TAG: $CIRCLE_JOB:$CIRCLE_SHA1
+            IMAGE_NAME: "$ECR_REPO/$IMAGE_TAG"
+            #SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
+            #TAG=$SHORT_GIT_HASH
+            REPO=$ECR_REPO
+            docker build -t $CIRCLE_JOB .
+            docker tag $CIRCLE_JOB:latest $REPO/$IMAGE_TAG
+            docker tag $CIRCLE_JOB:latest $REPO/$CIRCLE_JOB:latest
+            docker push $REPO/$IMAGE_TAG
+            docker push $REPO/$CIRCLE_JOB}:latest
