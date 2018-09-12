@@ -36,4 +36,4 @@ jobs:
             docker tag $CIRCLE_JOB:latest $REPO/$CIRCLE_JOB:latest
             $(aws ecr get-login --region us-east-2)
             docker push $REPO/$IMAGE_TAG
-            docker push $REPO/$CIRCLE_JOB}:latest
+            docker push $REPO/$CIRCLE_JOB:latest
