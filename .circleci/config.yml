@@ -41,6 +41,5 @@ jobs:
       - run:
           name: Deploy to ECS
           command: |
-            apk --no-cache add --update python python-dev py-pip
             pip install ecs-deploy
             ecs deploy --region ${AWS_REGION} ${CLUSTER_NAME} $CIRCLE_PROJECT_REPONAME --tag $CIRCLE_SHA1
