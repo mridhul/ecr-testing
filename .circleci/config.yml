@@ -58,4 +58,4 @@ jobs:
             #DESIRED_COUNT="1"
             #fi
             DESIRED_COUNT="1"
-            echo 'Update service >>';aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --task-definition ${TASK_FAMILY}:${TASK_REVISION} --desired-count ${DESIRED_COUNT}
+            echo 'Update service >>';aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --task-definition ${TASK_FAMILY}:${TASK_REVISION}
