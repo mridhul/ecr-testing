@@ -1,5 +1,5 @@
  {
-     "family": "<TASK FAMILY>",
+     "family": "ECS-TASKS",
      "containerDefinitions": [
          {
              "image": "264826312101.dkr.ecr.us-east-2.amazonaws.com/ecr-testing:%IMAGE_TAG%",
