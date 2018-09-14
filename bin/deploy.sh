@@ -38,8 +38,9 @@ build-docker(){
 }
 
 ecs-deploy() {
-    #
-    #
+    # Deploys a new revison to ECS cluster
+    # Arg1 - ECS Cluster Name
+    # Arg2 - ECS Service Name
     CLUSTER_NAME=$1
     SERVICE_NAME=$2
     TASK_FAMILY=$CIRCLE_PROJECT_REPONAME
@@ -50,6 +51,12 @@ ecs-deploy() {
     TASK_REVISION=`aws ecs describe-task-definition --task-definition ${TASK_FAMILY} | egrep "revision" | tr "/" " " | awk '{print $2}' | sed 's/"$//'`
     aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --task-definition ${TASK_FAMILY}:${TASK_REVISION}
 
+}
+
+rollback() {
+    # Rollback to a previous task revision
+    #
+    echo "Pass"
 }
 
 
@@ -81,4 +88,8 @@ if [ $action == "build" ];then
 elif [ $action == "deploy" ];then
     #Deploy revision to ECS
     ecs-deploy $cluster $service
+
+elif [ $action == "rollback" ];then
+    #Deploy revision to ECS
+    rollback $cluster $service
 fi
