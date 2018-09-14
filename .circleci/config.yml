@@ -31,17 +31,4 @@ jobs:
       - run:
           name: Deploy to ECS
           command: |
-            pip install ecs-deploy
-            SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
-            TAG=$SHORT_GIT_HASH
-            IMAGE_TAG=$CIRCLE_PROJECT_REPONAME:$TAG
-            IMAGE_NAME="$ECR_REPO/$IMAGE_TAG"
-            TASK_FAMILY=$CIRCLE_PROJECT_REPONAME
-            aws configure set default.region us-east-2
-            
-            SERVICE_NAME="ecs-service"
-            echo 'sed command   >>';sed -e "s;%IMAGE_TAG%;${TAG};g" ecs-tasks.json > my_website-${BUILD_NUMBER}.json
-            echo 'register task >>';aws ecs register-task-definition --family $TASK_FAMILY --cli-input-json file://my_website-${BUILD_NUMBER}.json
-            echo 'TASK REV VAR  >>';TASK_REVISION=`aws ecs describe-task-definition --task-definition ${TASK_FAMILY} | egrep "revision" | tr "/" " " | awk '{print $2}' | sed 's/"$//'`
-            echo 'Update service >>';aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --task-definition ${TASK_FAMILY}:${TASK_REVISION}
-            echo "Finished!!"
+            bin/deploy.sh --action=deploy --cluster=ecs-testing --service=ecs-service
