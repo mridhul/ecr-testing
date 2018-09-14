@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Build Docker images
           command: |
-            ./deploy.sh --action=build
+            bin/deploy.sh --action=build
             
       - run:
           name: Deploy to ECS
