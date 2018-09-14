@@ -26,17 +26,7 @@ jobs:
       - run:
           name: Build Docker images
           command: |
-            SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
-            TAG=$SHORT_GIT_HASH
-            IMAGE_TAG=$CIRCLE_PROJECT_REPONAME:$TAG
-            IMAGE_NAME="$ECR_REPO/$IMAGE_TAG"
-            REPO=$ECR_REPO
-            docker build -t $CIRCLE_PROJECT_REPONAME .
-            docker tag $CIRCLE_PROJECT_REPONAME:latest $REPO/$IMAGE_TAG
-            docker tag $CIRCLE_PROJECT_REPONAME:latest $REPO/$CIRCLE_PROJECT_REPONAME:latest
-            $(aws ecr get-login --region us-east-2)
-            docker push $REPO/$IMAGE_TAG
-            docker push $REPO/$CIRCLE_PROJECT_REPONAME:latest
+            ./deploy.sh --action=build
             
       - run:
           name: Deploy to ECS
