@@ -90,6 +90,6 @@ elif [ $action == "deploy" ];then
     ecs-deploy $cluster $service
 
 elif [ $action == "rollback" ];then
-    #Deploy revision to ECS
+    #Rollback to previous revesion
     rollback $cluster $service
 fi
