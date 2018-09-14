@@ -20,7 +20,7 @@ aws configure set default.region $AWS_REGION
 
 
 usage() {
-    echo "Usage deploy.sh [build] [deploy]"
+    echo "Usage deploy.sh [-a|--action] [-c|--cluster] [-s|--service]"
 }
 
 build-docker(){
