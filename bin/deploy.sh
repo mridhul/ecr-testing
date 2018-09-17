@@ -7,10 +7,15 @@
 # needs docker command (v1.3 or later) in order to work.
 #
 
+#Built-in Environment Variables pushed by circleci
+#-------------------------------------------------
+#$CIRCLE_SHA1                   The SHA1 hash of the last commit of the current build
+#$CIRCLE_PROJECT_REPONAME       The name of the repository of the current project
+#$BUILD_NUMBER                  The number of the CircleCI build. 
+#--------------------------------------------------
 
 # Defaults #
-SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
-TAG=$SHORT_GIT_HASH
+TAG=$CIRCLE_SHA1             
 IMAGE_TAG=$CIRCLE_PROJECT_REPONAME:$TAG
 IMAGE_NAME="$ECR_REPO/$IMAGE_TAG"
 REPO=$ECR_REPO
