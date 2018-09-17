@@ -2,7 +2,10 @@
 #
 # Usage: ./deploy.sh
 #
-# Example: ./deploy
+# Example: ./deploy.sh [-a|--action] [-c|--cluster] [-s|--service]
+#[-a|--action ] - Action you need to perform - build, deploy, rollback
+#[-c|--cluster] - Specify the AWS ECS cluster to which you need to deploy
+#[-s|--service] - Specify the AWS ECS service to which you need to deploy
 #
 # needs docker command (v1.3 or later) in order to work.
 #
