@@ -2,7 +2,7 @@
      "family": "ecr-testing",
      "containerDefinitions": [
          {
-             "image": "264826312101.dkr.ecr.us-east-2.amazonaws.com/ecr-testing:%IMAGE_TAG%",
+             "image": "776002636787.dkr.ecr.us-east-2.amazonaws.com/ecs-testing:%IMAGE_TAG%",
              "name": "ecs-testing",
              "cpu": 384,
              "memory": 512,
