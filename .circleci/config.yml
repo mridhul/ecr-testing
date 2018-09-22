@@ -31,4 +31,4 @@ jobs:
       - run:
           name: Deploy to ECS
           command: |
-            bin/deploy.sh --action=deploy --cluster=ecs-testing --service=ecs-service
+            bin/deploy.sh --action=deploy --cluster=v6-stage3-ECSCluster-1X4SJGQ770EZL --service=ecs-service
