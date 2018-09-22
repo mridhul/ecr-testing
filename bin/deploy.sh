@@ -54,7 +54,7 @@ ecs-deploy() {
     TASK_FAMILY=$CIRCLE_PROJECT_REPONAME
     TASK_FILE="impressBot-${BUILD_NUMBER}.json"
 
-    sed -e "s;%IMAGE_TAG%;${TAG};g" ecs-tasks.json > ${TASK_FILE}
+    sed -e "s;IMAGE_TAG;${TAG};g" ecs-tasks.json > ${TASK_FILE}
     aws ecs register-task-definition --family $TASK_FAMILY --cli-input-json file://${TASK_FILE}
     TASK_REVISION=`aws ecs describe-task-definition --task-definition ${TASK_FAMILY} | egrep "revision" | tr "/" " " | awk '{print $2}' | sed 's/"$//'`
     aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --task-definition ${TASK_FAMILY}:${TASK_REVISION}
