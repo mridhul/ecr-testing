@@ -23,10 +23,10 @@ jobs:
             pip install \
               docker-compose==1.12.0 \
               awscli
-       - run:
-          name: test
-          command: |
-            python test.py
+      - run:
+         name: test
+         command: |
+           python test.py
             
       #- run:
       #    name: Build Docker images
