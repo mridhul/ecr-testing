@@ -23,12 +23,17 @@ jobs:
             pip install \
               docker-compose==1.12.0 \
               awscli
-      - run:
-          name: Build Docker images
+       - run:
+          name: test
           command: |
-            bin/deploy.sh --action=build
+            python test.py
             
-      - run:
-          name: Deploy to ECS
-          command: |
-            bin/deploy.sh --action=deploy --cluster=v6-stage3-ECSCluster-1X4SJGQ770EZL --service=ecs-service
+      #- run:
+      #    name: Build Docker images
+      #    command: |
+      #      bin/deploy.sh --action=build
+            
+      #- run:
+      #    name: Deploy to ECS
+      #    command: |
+      #     bin/deploy.sh --action=deploy --cluster=v6-stage3-ECSCluster-1X4SJGQ770EZL --service=ecs-service
