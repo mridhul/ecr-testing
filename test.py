@@ -1,5 +1,12 @@
 import os
 
-print os.environ('CIRCLE_JOB')
-print os.environ('CIRCLE_SHA1')
-print os.environ('CIRCLE_PROJECT_REPONAME')
+
+if __name__ == '__main__':
+    yh = (
+        os.environ['CIRCLE_JOB'],
+        os.environ['CIRCLE_SHA1'],
+        os.environ['CIRCLE_PROJECT_REPONAME'],
+    )
+
+
+print yh
