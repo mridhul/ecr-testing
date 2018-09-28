@@ -28,12 +28,12 @@ jobs:
          command: |
            python test.py
             
-      #- run:
-      #    name: Build Docker images
-      #    command: |
-      #      bin/deploy.sh --action=build
+      - run:
+          name: Build Docker images
+          command: |
+            bin/deploy.sh --action=build
             
-      #- run:
-      #    name: Deploy to ECS
-      #    command: |
-      #     bin/deploy.sh --action=deploy --cluster=v6-stage3-ECSCluster-1X4SJGQ770EZL --service=ecs-service
+      - run:
+          name: Deploy to ECS
+          command: |
+            bin/deploy.sh --action=deploy --cluster=ecs-cluster --service=ecs-service
