@@ -1,5 +1,5 @@
  {
-     "family": "ecr-testing",
+     "family": "ecs-testing",
      "containerDefinitions": [
          {
              "image": "776002636787.dkr.ecr.us-east-2.amazonaws.com/ecs-testing:IMAGE_TAG",
