@@ -35,6 +35,8 @@ build-docker(){
     # Builds the docker image and Push to ECR
     # No Args needed
 
+    $(aws ecr get-login --no-include-email --region ap-southeast-1)
+    
     docker build -t $CIRCLE_PROJECT_REPONAME .
     docker tag $CIRCLE_PROJECT_REPONAME:latest $REPO/$IMAGE_TAG
     docker tag $CIRCLE_PROJECT_REPONAME:latest $REPO/$CIRCLE_PROJECT_REPONAME:latest
