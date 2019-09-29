@@ -1,2 +1,2 @@
-FROM 776002636787.dkr.ecr.ap-southeast-1.amazonaws.com/base-alpine-with-numpy:beta
+FROM alpine:latest
 RUN touch /opt/file.txt
